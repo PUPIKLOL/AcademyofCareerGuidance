@@ -1,0 +1,63 @@
+```csharp
+# Unity/Mono generated files
+*.pidb
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+*.unityproj.user
+
+# Build results
+Build/
+Builds/
+Temp/
+Library/
+Logs/
+Obj/
+Intermediate/
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.userprefs
+
+# Rider
+.idea/
+
+# Unity specific
+*.unitypackage
+[ProjectName].tmp
+[ProjectName].log
+[ProjectName].pidb
+[ProjectName].suo
+*.unityproj
+*.mat
+*.anim
+*.prefab
+*.unity
+*.asset
+*.meta
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# OS generated files
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+```

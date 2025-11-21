@@ -93,6 +93,8 @@ public class LogoGameManager : MonoBehaviour
 
         foreach (var shape in allShapes)
         {
+            if (shape == null) continue; // Проверяем, что сам компонент не null
+            
             Image img = shape.GetComponent<Image>();
             if (img != null && img.color == Color.white)
                 return;
@@ -104,5 +106,26 @@ public class LogoGameManager : MonoBehaviour
     public void OnDoneButton()
     {
         Debug.Log("✅ Логотип готов. Сохраняй в галерее.");
+    }
+
+    public void ResetGame()
+    {
+        // Удаляем все созданные фигуры
+        foreach (var shape in allShapes)
+        {
+            if (shape != null && shape.gameObject != null)
+            {
+                DestroyImmediate(shape.gameObject);
+            }
+        }
+        allShapes.Clear();
+        
+        // Сбрасываем состояние
+        selectedColor = null;
+        palettePanel.SetActive(false);
+        doneButton.gameObject.SetActive(false);
+        
+        // Перезапускаем генерацию
+        GenerateRandomShapes();
     }
 }

@@ -37,22 +37,33 @@ public class DraggableUILogo : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         );
         Vector2 newPos = localPoint + offset;
         rect.anchoredPosition = newPos;
+    }
 
-        // Проверка пересечений (только если другие фигуры уже на месте)
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        // Проверка пересечений при завершении перетаскивания (если нужно предотвращать наложение)
+        bool hasOverlap = false;
         foreach (var other in manager.allShapes)
         {
             if (other == this) continue;
             if (DoRectsOverlap(rect, other.rect))
             {
-                rect.anchoredPosition = startPos;
+                hasOverlap = true;
                 break;
             }
         }
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        startPos = rect.anchoredPosition;
+        
+        if (hasOverlap)
+        {
+            // Возвращаем в начальную позицию, если есть пересечение
+            rect.anchoredPosition = startPos;
+        }
+        else
+        {
+            // Сохраняем новую позицию, если нет пересечений
+            startPos = rect.anchoredPosition;
+        }
+        
         // После любого перемещения — проверяем, всё ли окрашено
         manager.CheckCompletion();
     }
